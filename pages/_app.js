@@ -1,7 +1,8 @@
 import "../styles/globals.css";
-import Layout from "./components/Layout";
+import Layout from "../components/Layout";
 import Router from "next/router";
 import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 NProgress.configure({ showSpinner: true });
 

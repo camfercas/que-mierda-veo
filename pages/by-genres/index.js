@@ -1,6 +1,6 @@
-import { genres } from "./genres";
+import { genres } from "../../data/genres";
 
-import { GenreOption } from "../components/GenreOption";
+import { GenreOption } from "../../components/GenreOption";
 
 export async function getStaticProps(context) {
   return {

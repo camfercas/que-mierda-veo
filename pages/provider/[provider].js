@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MovieCard } from "../components/MovieCard";
-import { PaginationButtons } from "../components/PaginationButtons";
+import { MovieCard } from "../../components/MovieCard";
+import { PaginationButtons } from "../../components/PaginationButtons";
 
 export async function getServerSideProps({ query }) {
   const provider = query.provider;

@@ -43,7 +43,7 @@ export const MovieCard = ({ movie }) => {
                 src="/svg/icons/IMDb.svg"
                 alt="IMDB"
                 title="IMDb Rating"
-                className="w-8 md:w-16 inline"
+                className="w-16 inline"
               />
               <p className="text-xl font-bold self-center pl-4">
                 {movie.imdbRating.toString().split("").join(".")}
@@ -59,12 +59,12 @@ export const MovieCard = ({ movie }) => {
                 src="/svg/icons/youtube.svg"
                 alt="Ver Tráiler"
                 title="Ver Tráiler"
-                className="w-8 md:w-16 inline"
+                className="w-12 inline"
               />
               <p className="text-xl font-bold self-center pl-4">Ver tráiler</p>
             </a>
           </Link>
-          <p className="text-xl font-bold self-center pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
+          <p className="text-3xl font-bold  pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
             Ver en:
           </p>
           {providers.map((provider, i) => (
@@ -77,7 +77,7 @@ export const MovieCard = ({ movie }) => {
                   src={`/svg/provider/${provider.name}.svg`}
                   alt={`Ver en ${provider.name}`}
                   title={`Ver en ${provider.name}`}
-                  className="w-16 self-center"
+                  className="w-28 self-center pb-2"
                 />
               </a>
             </Link>

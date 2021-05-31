@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MovieCard } from "../components/MovieCard";
-import { PaginationButtons } from "../components/PaginationButtons";
-import { genres } from "./genres";
+import { MovieCard } from "../../components/MovieCard";
+import { PaginationButtons } from "../../components/PaginationButtons";
+import { genres } from "../../data/genres";
 
 export async function getServerSideProps({ query }) {
   const genreName = query.genre;
@@ -44,9 +44,15 @@ export async function getServerSideProps({ query }) {
 //   return { paths, fallback: false };
 // };
 
-export default function genre({ movies, genre, page }) {
-  // console.log(movies);
+export default function genre({ movies, genre, page = 1 }) {
   const router = useRouter();
+  if (!movies) {
+    return (
+      <p className="text-xl text-white text-center">
+        No se han encontrado resultados.
+      </p>
+    );
+  }
   return (
     <>
       <div className="flex justify-between">
