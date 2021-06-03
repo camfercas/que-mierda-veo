@@ -8,12 +8,16 @@ export default function Layout({ children }) {
         <title>Que mierd* veo</title>
         <meta
           name="keywords"
-          content="netflix, que veo, streaming, imdb, peliculas"
+          content="netflix, que, veo, streaming, imdb, peliculas,mierda,amazon prime,prime video,prime,disney,plus,mejores,donde ver pelicula,en que plataforma esta,mejores peliculas"
         />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <meta
+          name="description"
+          content="Busca que películas ver y dónde verlas. Solo disponible para Netflix, Prime Video y Disney +."
+        ></meta>
         <link rel="icon" href="/svg/logo.svg" />
         <link
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
