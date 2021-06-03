@@ -18,7 +18,24 @@ export default function Layout({ children }) {
           name="description"
           content="Busca que películas ver y dónde verlas. Solo disponible para Netflix, Prime Video y Disney +."
         ></meta>
-        <link rel="icon" href="/svg/logo.svg" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/svg/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/svg/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/svg/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/svg/favicon/site.webmanifest" />
         <link
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
