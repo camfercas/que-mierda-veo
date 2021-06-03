@@ -3,10 +3,10 @@ import React from "react";
 
 export const PaginationButtons = ({ page = 1 }) => {
   return (
-    <div className="flex">
+    <div className="flex my-4">
       {page > 1 && (
         <Link href={`?page=${+page - 1}`}>
-          <button className="border border-yellow-700 text-white rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-yellow-700 hover:text-white">
+          <button className="border border-white text-white rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-gray-300 hover:text-gray-800">
             <svg
               className="h-5 w-5 mr-2 fill-current"
               x="0px"
@@ -25,7 +25,7 @@ export const PaginationButtons = ({ page = 1 }) => {
         </Link>
       )}
       <Link href={`?page=${+page + 1}`}>
-        <button className="border border-yellow-800 bg-yellow-700 text-white rounded-sm font-bold py-4 px-6 ml-2 flex items-center hover:bg-yellow-800">
+        <button className="border border-white bg-white text-gray-800 rounded-sm font-bold py-4 px-6 ml-2 flex items-center hover:bg-gray-300">
           Siguiente
           <svg
             className="h-5 w-5 ml-2 fill-current"
