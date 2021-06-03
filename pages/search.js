@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MovieCard } from "../../components/MovieCard";
+import { MovieCard } from "../components/MovieCard";
 // import Link from "next/link";
 // import { PaginationButtons } from "../../components/PaginationButtons";
 
