@@ -47,7 +47,7 @@ export const MovieCard = ({ movie }) => {
           />
         )}
 
-        <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex flex-col items-center group-hover:opacity-100 transition justify-center">
+        <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex flex-col items-center group-hover:opacity-100 transition justify-evenly">
           <Link href={`https://www.imdb.com/title/${movie.imdbID}`}>
             <a
               target="_blank"
@@ -59,7 +59,7 @@ export const MovieCard = ({ movie }) => {
                 title="IMDb Rating"
                 className="w-16 inline"
               />
-              <p className="text-xl font-bold self-center pl-4">
+              <p className="text-4xl sm:text-xl font-bold self-center pl-4">
                 {movie.imdbRating.toString().split("").join(".")}
               </p>
             </a>
@@ -75,10 +75,12 @@ export const MovieCard = ({ movie }) => {
                 title="Ver Tráiler"
                 className="w-12 inline"
               />
-              <p className="text-xl font-bold self-center pl-4">Ver tráiler</p>
+              <p className="text-4xl sm:text-xl font-bold self-center pl-4">
+                Ver tráiler
+              </p>
             </a>
           </Link>
-          <p className="text-3xl font-bold  pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
+          <p className="text-5xl sm:text-3xl font-bold  pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
             Ver en:
           </p>
           {providers.length > 0 ? (
@@ -92,7 +94,7 @@ export const MovieCard = ({ movie }) => {
                     src={`/svg/provider/${provider.name}.svg`}
                     alt={`Ver en ${provider.name}`}
                     title={`Ver en ${provider.name}`}
-                    className="w-28 self-center pb-2"
+                    className="w-36 sm:w-28 self-center pb-3"
                   />
                 </a>
               </Link>

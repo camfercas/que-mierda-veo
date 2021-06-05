@@ -13,7 +13,16 @@ export async function getStaticProps(context) {
 export default function byGenres({ allGenres }) {
   return (
     <>
-      <p className="text-xl text-white">Selecciona un género:</p>
+      <div className="flex justify-between">
+        <p className="text-white text-xl p-4">Seleccione un género:</p>
+
+        <p
+          onClick={() => router.push("/")}
+          className="text-white text-xl font-bold p-4 cursor-pointer transform hover:scale-110"
+        >
+          &#x2190; Volver
+        </p>
+      </div>
       <div className="flex flex-wrap overflow-hidden place-content-center place-items-center mt-5">
         {allGenres.map((genre, i) => (
           <GenreOption

@@ -1,8 +1,12 @@
 import { Options } from "../components/Options";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+
+  const [searchValue, setSearchValue] = useState("");
+
   const handleKeyDown = ({ key, target }) => {
     if (key === "Enter") {
       router.push({
@@ -12,6 +16,13 @@ export default function Home() {
     }
   };
 
+  const handleClickSearch = (e) => {
+    router.push({
+      pathname: "/search",
+      query: { q: searchValue },
+    });
+  };
+
   return (
     <>
       <div className="w-full h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-5">
@@ -19,6 +30,8 @@ export default function Home() {
           type="search"
           name="search"
           id="search"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Donde mierd* veo esta película?"
           className="appearance-none w-full outline-none focus:outline-none active:outline-none"
           onKeyDown={handleKeyDown}
@@ -26,6 +39,7 @@ export default function Home() {
         <button
           type="button"
           className="ml-1 outline-none focus:outline-none active:outline-none"
+          onClick={handleClickSearch}
         >
           <svg
             fill="none"
