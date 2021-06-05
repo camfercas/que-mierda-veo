@@ -14,7 +14,7 @@ export async function getServerSideProps({ query }) {
   // Obtengo el genero
   const genre = genres.filter((e) => e.name === genreName)[0];
   const res = await fetch(
-    `https://streaming-availability.p.rapidapi.com/search/ultra?country=ar&services=${services}&type=movie&order_by=${orderBy}&year_min=2000&year_max=2021&page=${page}&genres=${genre.id}&genres_relation=or&desc=true&min_imdb_rating=70&max_imdb_rating=90&min_imdb_vote_count=10000&max_imdb_vote_count=1000000`,
+    `https://streaming-availability.p.rapidapi.com/search/ultra?country=ar&services=${services}&type=movie&order_by=${orderBy}&year_min=2000&year_max=2021&page=${page}&genres=${genre.id}&genres_relation=or&desc=true&min_imdb_rating=60&max_imdb_rating=90&min_imdb_vote_count=10000&max_imdb_vote_count=1000000`,
     {
       method: "GET",
       headers: {
@@ -38,6 +38,7 @@ export async function getServerSideProps({ query }) {
       page,
       orderBy,
       providers,
+      total_pages: data.total_pages,
     },
   };
 }
@@ -50,7 +51,28 @@ export async function getServerSideProps({ query }) {
 //   return { paths, fallback: false };
 // };
 
-export default function genre({ movies, genre, page = 1, orderBy, providers }) {
+const getProvider = (services, service) => {
+  let providers = "";
+  let providersArr = services.split(",");
+  if (services.search(service) >= 0) {
+    providers = providersArr.filter((e) => e !== service).join(",");
+  } else {
+    providersArr.push(service);
+    providers = providersArr.join(",");
+  }
+
+  return providers;
+};
+
+export default function genre({
+  movies,
+  genre,
+  page = 1,
+  orderBy,
+  providers,
+  total_pages = 1,
+}) {
+  console.log(providers);
   const router = useRouter();
   if (!movies) {
     return (
@@ -81,7 +103,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
             <Link
               href={{
                 pathname: `/by-genres/${genre.name}`,
-                query: {},
+                query: { provider: router.query.provider },
               }}
             >
               <a
@@ -89,14 +111,14 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
                   orderBy === "imdb_vote_count" && "text-yellow-500"
                 }`}
               >
-                Más votadas
+                Más populares
               </a>
             </Link>
             -
             <Link
               href={{
                 pathname: `/by-genres/${genre.name}`,
-                query: { orderBy: "year" },
+                query: { orderBy: "year", provider: router.query.provider },
               }}
             >
               <a
@@ -111,7 +133,10 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
             <Link
               href={{
                 pathname: `/by-genres/${genre.name}`,
-                query: { orderBy: "imdb_rating" },
+                query: {
+                  orderBy: "imdb_rating",
+                  provider: router.query.provider,
+                },
               }}
             >
               <a
@@ -125,21 +150,77 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
           </span>
         </p>
         <p className="text-white text-xl p-4">
-          Ver de:
+          Mostrar de:
           <Link
             href={{
               pathname: `/by-genres/${genre.name}`,
-              query: { provider: "prime,disney" },
+              query: {
+                provider: `${getProvider(providers, "netflix")}`,
+                orderBy: router.query.orderBy,
+              },
             }}
           >
-            <img
-              src="/svg/provider/netflix.svg"
-              alt="Netflix"
-              title="Netflix"
-              className={`w-20 inline px-2 ${
-                providers.search("netflix") >= 0 ? "opacity-100" : "opacity-25"
-              }`}
-            />
+            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+              <img
+                src="/svg/provider/netflix.svg"
+                alt="Netflix"
+                title="Netflix"
+                className={`w-24 inline ${
+                  providers.search("netflix") >= 0
+                    ? "opacity-100"
+                    : "opacity-25"
+                }`}
+              />
+              {providers.search("netflix") >= 0 && (
+                <span className="text-green-500 inline"> &#10004;</span>
+              )}
+            </div>
+          </Link>
+          <Link
+            href={{
+              pathname: `/by-genres/${genre.name}`,
+              query: {
+                provider: `${getProvider(providers, "prime")}`,
+                orderBy: router.query.orderBy,
+              },
+            }}
+          >
+            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+              <img
+                src="/svg/provider/prime.svg"
+                alt="Prime Video"
+                title="Prime Video"
+                className={`w-24 inline ${
+                  providers.search("prime") >= 0 ? "opacity-100" : "opacity-25"
+                }`}
+              />
+              {providers.search("prime") >= 0 && (
+                <span className="text-green-500 inline"> &#10004;</span>
+              )}
+            </div>
+          </Link>
+          <Link
+            href={{
+              pathname: `/by-genres/${genre.name}`,
+              query: {
+                provider: `${getProvider(providers, "disney")}`,
+                orderBy: router.query.orderBy,
+              },
+            }}
+          >
+            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+              <img
+                src="/svg/provider/disney.svg"
+                alt="Disney +"
+                title="Disney +"
+                className={`w-24 inline ${
+                  providers.search("disney") >= 0 ? "opacity-100" : "opacity-25"
+                }`}
+              />
+              {providers.search("disney") >= 0 && (
+                <span className="text-green-500 inline"> &#10004;</span>
+              )}
+            </div>
           </Link>
         </p>
       </div>
@@ -151,7 +232,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
           ))}
         </section>
         <section>
-          <PaginationButtons page={page} />
+          <PaginationButtons page={page} maxPage={total_pages} />
         </section>
       </div>
     </>

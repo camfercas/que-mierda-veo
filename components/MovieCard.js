@@ -100,7 +100,7 @@ export const MovieCard = ({ movie }) => {
               </Link>
             ))
           ) : (
-            <p className="text-3xl font-bold  pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
+            <p className="text-3xl font-bold pl-4 text-white opacity-0 transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
               No disponible
             </p>
           )}

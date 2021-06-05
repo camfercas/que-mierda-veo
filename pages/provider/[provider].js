@@ -8,7 +8,7 @@ export async function getServerSideProps({ query }) {
   const page = query.page || 1;
 
   const res = await fetch(
-    `https://streaming-availability.p.rapidapi.com/search/ultra?country=ar&services=${provider}&type=movie&order_by=imdb_vote_count&year_min=2000&year_max=2020&page=${page}&desc=true&min_imdb_rating=70&max_imdb_rating=90&min_imdb_vote_count=10000&max_imdb_vote_count=1000000`,
+    `https://streaming-availability.p.rapidapi.com/search/ultra?country=ar&services=${provider}&type=movie&order_by=imdb_vote_count&year_min=2000&year_max=2021&page=${page}&desc=true&min_imdb_rating=60&max_imdb_rating=90&min_imdb_vote_count=10000&max_imdb_vote_count=1000000`,
     {
       method: "GET",
       headers: {
