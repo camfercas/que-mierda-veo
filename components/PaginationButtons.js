@@ -28,7 +28,10 @@ export const PaginationButtons = ({ page = 1 }) => {
         </button>
       )}
       <Link
-        href={{ pathname: "", query: { ...router.query, page: +page + 1 } }}
+        href={{
+          pathname: ``,
+          query: { ...router.query, page: +page + 1 },
+        }}
       >
         <button className="border border-white bg-white text-gray-800 rounded-sm font-bold py-4 px-6 ml-2 flex items-center hover:bg-gray-300">
           Siguiente

@@ -80,7 +80,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
           <span className="block sm:inline">
             <Link
               href={{
-                pathname: `/${genre.name}`,
+                pathname: `/by-genres/${genre.name}`,
                 query: {},
               }}
             >
@@ -95,7 +95,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
             -
             <Link
               href={{
-                pathname: `/${genre.name}`,
+                pathname: `/by-genres/${genre.name}`,
                 query: { orderBy: "year" },
               }}
             >
@@ -110,7 +110,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
             -
             <Link
               href={{
-                pathname: `/${genre.name}`,
+                pathname: `/by-genres/${genre.name}`,
                 query: { orderBy: "imdb_rating" },
               }}
             >
@@ -128,7 +128,7 @@ export default function genre({ movies, genre, page = 1, orderBy, providers }) {
           Ver de:
           <Link
             href={{
-              pathname: `/${genre.name}`,
+              pathname: `/by-genres/${genre.name}`,
               query: { provider: "prime,disney" },
             }}
           >
