@@ -50,14 +50,7 @@ export async function getServerSideProps({ query }) {
 //   return { paths, fallback: false };
 // };
 
-export default function genre({
-  movies,
-  genre,
-  page = 1,
-  orderBy,
-  provider,
-  providers,
-}) {
+export default function genre({ movies, genre, page = 1, orderBy, providers }) {
   const router = useRouter();
   if (!movies) {
     return (
@@ -87,7 +80,7 @@ export default function genre({
           <span className="block sm:inline">
             <Link
               href={{
-                pathname: "",
+                pathname: `/${genre.name}`,
                 query: {},
               }}
             >
@@ -102,7 +95,7 @@ export default function genre({
             -
             <Link
               href={{
-                pathname: "",
+                pathname: `/${genre.name}`,
                 query: { orderBy: "year" },
               }}
             >
@@ -117,7 +110,7 @@ export default function genre({
             -
             <Link
               href={{
-                pathname: "",
+                pathname: `/${genre.name}`,
                 query: { orderBy: "imdb_rating" },
               }}
             >
@@ -135,7 +128,7 @@ export default function genre({
           Ver de:
           <Link
             href={{
-              pathname: "",
+              pathname: `/${genre.name}`,
               query: { provider: "prime,disney" },
             }}
           >
