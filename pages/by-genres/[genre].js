@@ -72,7 +72,6 @@ export default function genre({
   providers,
   total_pages = 1,
 }) {
-  console.log(providers);
   const router = useRouter();
   if (!movies) {
     return (
@@ -96,7 +95,7 @@ export default function genre({
         </p>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row sm:justify-between">
         <p className="text-white text-xl p-4">
           Ordenar por:{" "}
           <span className="block sm:inline">
@@ -149,80 +148,110 @@ export default function genre({
             </Link>
           </span>
         </p>
-        <p className="text-white text-xl p-4">
+        <div className=" text-white text-xl p-4">
           Mostrar de:
-          <Link
-            href={{
-              pathname: `/by-genres/${genre.name}`,
-              query: {
-                provider: `${getProvider(providers, "netflix")}`,
-                orderBy: router.query.orderBy,
-              },
-            }}
-          >
-            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
-              <img
-                src="/svg/provider/netflix.svg"
-                alt="Netflix"
-                title="Netflix"
-                className={`w-24 inline ${
-                  providers.search("netflix") >= 0
-                    ? "opacity-100"
-                    : "opacity-25"
-                }`}
-              />
-              {providers.search("netflix") >= 0 && (
-                <span className="text-green-500 inline"> &#10004;</span>
-              )}
-            </div>
-          </Link>
-          <Link
-            href={{
-              pathname: `/by-genres/${genre.name}`,
-              query: {
-                provider: `${getProvider(providers, "prime")}`,
-                orderBy: router.query.orderBy,
-              },
-            }}
-          >
-            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
-              <img
-                src="/svg/provider/prime.svg"
-                alt="Prime Video"
-                title="Prime Video"
-                className={`w-24 inline ${
-                  providers.search("prime") >= 0 ? "opacity-100" : "opacity-25"
-                }`}
-              />
-              {providers.search("prime") >= 0 && (
-                <span className="text-green-500 inline"> &#10004;</span>
-              )}
-            </div>
-          </Link>
-          <Link
-            href={{
-              pathname: `/by-genres/${genre.name}`,
-              query: {
-                provider: `${getProvider(providers, "disney")}`,
-                orderBy: router.query.orderBy,
-              },
-            }}
-          >
-            <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
-              <img
-                src="/svg/provider/disney.svg"
-                alt="Disney +"
-                title="Disney +"
-                className={`w-24 inline ${
-                  providers.search("disney") >= 0 ? "opacity-100" : "opacity-25"
-                }`}
-              />
-              {providers.search("disney") >= 0 && (
-                <span className="text-green-500 inline"> &#10004;</span>
-              )}
-            </div>
-          </Link>
-        </p>
+          <div className="flex sm:inline">
+            <Link
+              href={{
+                pathname: `/by-genres/${genre.name}`,
+                query: {
+                  provider: `${getProvider(providers, "netflix")}`,
+                  orderBy: router.query.orderBy,
+                },
+              }}
+            >
+              <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+                <img
+                  src="/svg/provider/netflix.svg"
+                  alt="Netflix"
+                  title="Netflix"
+                  className={`w-16 sm:w-24 inline ${
+                    providers.search("netflix") >= 0
+                      ? "opacity-100"
+                      : "opacity-25"
+                  }`}
+                />
+                {providers.search("netflix") >= 0 && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    className="fill-current text-green-500 inline pl-2"
+                  >
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                )}
+              </div>
+            </Link>
+            <Link
+              href={{
+                pathname: `/by-genres/${genre.name}`,
+                query: {
+                  provider: `${getProvider(providers, "prime")}`,
+                  orderBy: router.query.orderBy,
+                },
+              }}
+            >
+              <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+                <img
+                  src="/svg/provider/prime.svg"
+                  alt="Prime Video"
+                  title="Prime Video"
+                  className={`w-16 sm:w-24 inline ${
+                    providers.search("prime") >= 0
+                      ? "opacity-100"
+                      : "opacity-25"
+                  }`}
+                />
+                {providers.search("prime") >= 0 && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    className="fill-current text-green-500 inline pl-2"
+                  >
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                )}
+              </div>
+            </Link>
+            <Link
+              href={{
+                pathname: `/by-genres/${genre.name}`,
+                query: {
+                  provider: `${getProvider(providers, "disney")}`,
+                  orderBy: router.query.orderBy,
+                },
+              }}
+            >
+              <div className="cursor-pointer inline-block px-2 hover:scale-110 transform transition">
+                <img
+                  src="/svg/provider/disney.svg"
+                  alt="Disney +"
+                  title="Disney +"
+                  className={`w-16 sm:w-24 inline ${
+                    providers.search("disney") >= 0
+                      ? "opacity-100"
+                      : "opacity-25"
+                  }`}
+                />
+                {providers.search("disney") >= 0 && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    className="fill-current text-green-500 inline pl-2"
+                  >
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                )}
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
 
       <div className="grid place-items-center min-h-screen">

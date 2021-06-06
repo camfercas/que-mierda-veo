@@ -5,10 +5,11 @@ import { MovieCard } from "../components/MovieCard";
 
 export async function getServerSideProps({ query }) {
   const keyword = query.q;
+  const type = query.t || "movie";
   const page = query.page || 1;
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&query=${keyword}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.THEMOVIEDB_API_KEY}&query=${keyword}&page=1&include_adult=false`
   );
   const data = await res.json();
   // console.log(data);
@@ -44,7 +45,6 @@ export async function getServerSideProps({ query }) {
         })
     );
   }
-  // console.log(movies);
 
   return {
     props: {
