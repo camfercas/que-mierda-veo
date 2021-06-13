@@ -9,7 +9,7 @@ export const Options = () => {
           path="options"
           desc="Buscar por género"
         ></Option>
-        <Option url="by-actor" path="options" desc="Buscar por actor"></Option>
+        <Option url="latest" path="options" desc="Últimos estrenos"></Option>
         <Option
           url="by-other-movies"
           path="options"

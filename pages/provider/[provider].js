@@ -44,14 +44,13 @@ export async function getServerSideProps({ query }) {
 //   return { paths, fallback: false };
 // };
 
-export default function genre({
+export default function provider({
   movies,
   provider,
   page,
   total_pages = 1,
   orderBy,
 }) {
-  console.log(movies);
   const router = useRouter();
   return (
     <>

@@ -27,10 +27,10 @@ export const MovieCard = ({ movie }) => {
   return (
     <div className="bg-gray-900 shadow-lg rounded p-3">
       <div className="group relative">
-        {movie.posterURLs.original ? (
+        {movie.posterURLs[342] ? (
           <Image
             className="w-full md:w-72 block rounded"
-            src={movie?.posterURLs?.original}
+            src={movie?.posterURLs[342]}
             alt={movie.title}
             width={500}
             height={500}

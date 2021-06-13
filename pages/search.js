@@ -8,19 +8,24 @@ export async function getServerSideProps({ query }) {
   const type = query.t || "movie";
   const page = query.page || 1;
 
-  const res = await fetch(
-    `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.THEMOVIEDB_API_KEY}&query=${keyword}&page=1&include_adult=false`
-  );
+  const url =
+    type === "movie"
+      ? `https://api.themoviedb.org/3/search/movie?api_key=${process.env.THEMOVIEDB_API_KEY}&query=${keyword}&page=1&include_adult=false`
+      : `https://api.themoviedb.org/3/person/${keyword}?api_key=${process.env.THEMOVIEDB_API_KEY}&append_to_response=movie_credits`;
+
+  const res = await fetch(url);
   const data = await res.json();
   // console.log(data);
   let movies = [];
-  if (!data?.results) {
+  let name = data.name ? data.name : "";
+  if (!data) {
     return {
       notFound: true,
     };
   } else {
+    let dataArr = data.results ? data.results : data.movie_credits.cast;
     movies = await Promise.all(
-      data?.results
+      dataArr
         .sort(function (a, b) {
           return b.popularity - a.popularity;
         })
@@ -51,11 +56,17 @@ export async function getServerSideProps({ query }) {
       movies,
       keyword,
       page,
+      name,
     },
   };
 }
 
-export default function search({ movies, keyword = "", notFound = false }) {
+export default function search({
+  movies,
+  keyword = "",
+  name,
+  notFound = false,
+}) {
   const router = useRouter();
   // console.log(movies);
   if (!movies || movies.length === 0 || notFound === true) {
@@ -85,12 +96,12 @@ export default function search({ movies, keyword = "", notFound = false }) {
       <div className="flex justify-between">
         <p className="text-white text-xl p-4">
           Coincidencias encontradas para:{" "}
-          <span className="capitalize font-bold">{keyword}</span>
+          <span className="capitalize font-bold">{name ? name : keyword}</span>
         </p>
 
         <p
           onClick={() => router.back()}
-          className="text-white text-xl p-4 cursor-pointer transform hover:scale-110"
+          className="text-white text-xl p-4 cursor-pointer transform hover:scale-110 font-bold"
         >
           &#x2190; Volver
         </p>

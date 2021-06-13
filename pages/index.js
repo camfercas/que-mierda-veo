@@ -9,6 +9,24 @@ export default function Home() {
 
   const [searchByMovie, setSearchByMovie] = useState(true);
 
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleInputChange = async ({ target }) => {
+    setSearchValue(target.value);
+
+    if (searchValue.length >= 3) {
+      const type = searchByMovie ? "movie" : "person";
+
+      const res = await fetch(`/api/search/${type}?query=${searchValue}`);
+      const data = await res.json();
+      if (data) {
+        setSearchResults(data);
+      }
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   const handleKeyDown = ({ key, target }) => {
     if (key === "Enter") {
       router.push({
@@ -23,6 +41,19 @@ export default function Home() {
       pathname: "/search",
       query: { q: searchValue },
     });
+  };
+
+  const handleResultClick = (id) => {
+    if (searchByMovie) {
+      router.push({
+        pathname: `/movie/${id}`,
+      });
+    } else {
+      router.push({
+        pathname: "/search",
+        query: { q: id, t: "person" },
+      });
+    }
   };
 
   return (
@@ -53,7 +84,7 @@ export default function Home() {
           name="search"
           id="search"
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleInputChange}
           placeholder={
             searchByMovie
               ? "Donde mierd* veo esta película?"
@@ -80,6 +111,29 @@ export default function Home() {
           </svg>
         </button>
       </div>
+      {searchResults && (
+        <>
+          <ul className="flex flex-col mt-2">
+            {searchResults.map(({ id, name, img, year }) => (
+              <li
+                key={id}
+                onClick={() => handleResultClick(id, name)}
+                className="border-gray-100 flex flex-row mb-2"
+              >
+                <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                  <div className="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">
+                    <img src={img} width="40" height="40" className="" />
+                  </div>
+                  <div className="flex-1 pl-1 mr-16">
+                    <div className="font-medium">{name}</div>
+                    <div className="text-gray-600 text-sm">{year}</div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
       {}
       <Options />
     </>
