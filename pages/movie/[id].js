@@ -102,14 +102,14 @@ export default function movie({ movie, title, overview, notFound }) {
                   title="Ver Tráiler"
                   className="w-12 inline"
                 />
-                <p className="text-4xl sm:text-xl font-bold self-center pl-4">
+                <p className="text-4xl sm:text-2xl font-bold self-center pl-4 text-red-500">
                   Ver tráiler
                 </p>
               </a>
             </Link>
           </div>
 
-          <p className="text-5xl sm:text-3xl font-bold self-center pl-4 text-white  transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
+          <p className="text-5xl sm:text-3xl font-bold self-center py-2 sm:py-0 pl-4 text-white  transform group-hover:translate-y-0 group-hover:opacity-100 transition flex">
             Ver en:
           </p>
           {providers.length > 0 ? (

@@ -14,7 +14,10 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <p className="text-white flex items-center justify-center text-2xl italic">
+        <p
+          className="text-white flex items-center justify-center text-5xl"
+          style={{ fontFamily: "Stint Ultra Condensed" }}
+        >
           Qué mierd* veo?
         </p>
       </header>

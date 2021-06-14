@@ -16,8 +16,13 @@ export const Options = () => {
           desc="Buscar por otras películas que ví"
         ></Option>
       </div>
-      <p className="text-white text-xl font-bold">Qué mierd* veo en?</p>
-      <div className="flex flex-wrap overflow-hidden place-content-center place-items-center mt-5">
+      <p
+        className="text-white text-3xl font-bold"
+        style={{ fontFamily: "Stint Ultra Condensed" }}
+      >
+        Qué mierd* veo en?
+      </p>
+      <div className="flex flex-wrap overflow-hidden place-content-center place-items-center mt-3">
         <Option url="provider/netflix" path="" desc="Netflix"></Option>
         <Option url="provider/disney" path="" desc="Disney +"></Option>
         <Option url="provider/prime" path="" desc="Amazon Prime"></Option>

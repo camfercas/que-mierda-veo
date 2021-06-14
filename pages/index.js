@@ -83,6 +83,7 @@ export default function Home() {
           type="search"
           name="search"
           id="search"
+          enterkeyhint="search"
           value={searchValue}
           onChange={handleInputChange}
           placeholder={
@@ -90,7 +91,7 @@ export default function Home() {
               ? "Donde mierd* veo esta película?"
               : "Donde mierd* veo a este actor/actriz?"
           }
-          className="appearance-none w-full outline-none focus:outline-none active:outline-none"
+          className="appearance-none w-full outline-none focus:outline-none active:outline-none focus:h-15"
           onKeyDown={handleKeyDown}
         />
         <button

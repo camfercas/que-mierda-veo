@@ -1,5 +1,5 @@
 import { genres } from "../../data/genres";
-
+import { useRouter } from "next/router";
 import { GenreOption } from "../../components/GenreOption";
 
 export async function getStaticProps(context) {
@@ -11,6 +11,7 @@ export async function getStaticProps(context) {
 }
 
 export default function byGenres({ allGenres }) {
+  const router = useRouter();
   return (
     <>
       <div className="flex justify-between">

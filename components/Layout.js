@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 export default function Layout({ children }) {
@@ -16,7 +17,7 @@ export default function Layout({ children }) {
         />
         <meta
           name="description"
-          content="Busca que películas ver y dónde verlas. Solo disponible para Netflix, Prime Video y Disney +."
+          content="Qué mierd* veo? El sitio para saber que mierd* ver y donde mierd* verla. Solo disponible para Netflix, Prime Video y Disney +."
         ></meta>
         <link
           rel="apple-touch-icon"
@@ -40,15 +41,22 @@ export default function Layout({ children }) {
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Stint+Ultra+Condensed&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-
-      <Header />
-      <main
-        className="container px-4 md:px-0 max-w-6xl mx-auto mt-5"
-        style={{ fontFamily: "Source Sans Pro" }}
-      >
-        {children}
-      </main>
+      <div className="min-h-screen">
+        <Header />
+        <main
+          className="container px-4 md:px-0 max-w-6xl mx-auto mt-5"
+          style={{ fontFamily: "Source Sans Pro" }}
+        >
+          {children}
+        </main>
+      </div>
+      <Footer />
     </>
   );
 }
