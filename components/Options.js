@@ -10,11 +10,11 @@ export const Options = () => {
           desc="Buscar por género"
         ></Option>
         <Option url="latest" path="options" desc="Últimos estrenos"></Option>
-        <Option
+        {/* <Option
           url="by-other-movies"
           path="options"
           desc="Buscar por otras películas que ví"
-        ></Option>
+        ></Option> */}
       </div>
       <p
         className="text-white text-3xl font-bold"

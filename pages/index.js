@@ -83,7 +83,7 @@ export default function Home() {
           type="search"
           name="search"
           id="search"
-          enterkeyhint="search"
+          enterKeyHint="search"
           value={searchValue}
           onChange={handleInputChange}
           placeholder={
